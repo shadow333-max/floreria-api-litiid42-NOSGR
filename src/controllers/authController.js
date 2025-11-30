@@ -6,7 +6,7 @@ const authController = {
   //  registro de usuario
   register: async (req, res, next) => {
     try {
-      const { name, email, password, rol } = req.body;
+      const { nombre, email, password, rol } = req.body;
 
       // verificar si el correo electrónico ya existe
       const existingUser = await User.findByEmail(email);
@@ -17,7 +17,7 @@ const authController = {
       }
 
       // crear usuario
-      const userId = await User.create({ name, email, password, rol });
+      const userId = await User.create({ nombre, email, password, rol });
 
       // obtener usuario creado (sin password)
       const user = await User.findById(userId);
@@ -90,7 +90,7 @@ const authController = {
           {
             user: {
               id: user.id,
-              name: user.name,
+              name: user.nombre,
               email: user.email,
               rol: user.rol
             },

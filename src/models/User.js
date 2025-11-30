@@ -6,7 +6,7 @@ class User {
   // crear usuario
   static async create(userData) {
     const { nombre, email, password, rol = 'user' } = userData;
-    
+
     // encriptar contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
     

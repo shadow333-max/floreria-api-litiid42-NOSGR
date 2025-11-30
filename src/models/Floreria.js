@@ -6,15 +6,15 @@ class Floreria {
   static async create(floreriaData) {
 let { 
         nombre, 
-        descripcion = null,   
-        logo = null,
-        direccion = null,
-        estatus = 1,       
+        descripcion,   
+        logo,
+        ubicacion,
+        telefono,
+        email,
+        horario,
+        estatus,       
         id_ciudad, 
         id_usuario,      
-        email = null,
-        telefono,
-        horario = null
     } = floreriaData;
 
     if (estatus === 'activo') {
@@ -28,12 +28,12 @@ let {
 
     const sql = `
       INSERT INTO florerias 
-      (nombre, descripcion, logo, direccion, estatus, id_ciudad, id_usuario, email, telefono, horario) 
+      (nombre, descripcion, logo, direccion, telefono, correo_electronico, horario, estatus, id_ciudad, id_usuario) 
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     const result = await query(sql, [
-      nombre, descripcion, logo, direccion, telefono, email, horario, estatus, id_ciudad, id_usuario
+      nombre, descripcion, logo, ubicacion, telefono, email, horario, estatus, id_ciudad, id_usuario
     ]);
 
     return this.findById(result.insertId);
@@ -58,23 +58,39 @@ let {
     return florerias[0] || null;
   }
 
-  // listar todas las florerías con paginación
+// listar todas las florerías con paginación
   static async findAll(page = 1, limit = 10, filters = {}) {
-    const offset = (page - 1) * limit;
+    // Aseguramos que sean números enteros
+    const limitNum = parseInt(limit) || 10;
+    const pageNum = parseInt(page) || 1;
+    const offset = (pageNum - 1) * limitNum;
+    
     const conditions = [];
     const params = [];
 
-    // filtros opcionales
+    // --- FILTROS ---
+    
+    // 1. Filtro estatus (con conversión Texto -> Número)
     if (filters.estatus) {
       conditions.push('f.estatus = ?');
-      params.push(filters.estatus);
+      
+      let val = filters.estatus;
+      const valStr = String(val).toLowerCase();
+
+      if (valStr === 'activo') val = 1;
+      else if (valStr === 'inactivo') val = 0;
+      else if (valStr === 'pendiente') val = 2;
+      
+      params.push(val);
     }
 
+    // 2. Filtro Ciudad
     if (filters.id_ciudad) {
       conditions.push('f.id_ciudad = ?');
       params.push(filters.id_ciudad);
     }
 
+    // 3. Búsqueda
     if (filters.search) {
       conditions.push('(f.nombre LIKE ? OR f.descripcion LIKE ?)');
       params.push(`%${filters.search}%`, `%${filters.search}%`);
@@ -82,12 +98,14 @@ let {
 
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 
-    // contar total
-    const countSql = `SELECT COUNT(*) as total FROM florerias f ${whereClause}`;
-    const [countResult] = await query(countSql, params);
-    const total = countResult.total;
+    // --- CONSULTAS ---
 
-    // Obtener registros
+    // 1. Contar total (Corregido: sin corchetes en la respuesta)
+    const countSql = `SELECT COUNT(*) as total FROM florerias f ${whereClause}`;
+    const countResult = await query(countSql, params);
+    const total = countResult[0].total; // Accedemos a la primera fila
+
+    // 2. Obtener registros (Corregido: eliminada la coma antes de LIMIT)
     const sql = `
       SELECT 
         f.*,
@@ -97,11 +115,12 @@ let {
       FROM florerias f
       INNER JOIN ciudades c ON f.id_ciudad = c.id
       INNER JOIN usuarios u ON f.id_usuario = u.id
-      ${whereClause},
+      ${whereClause} 
       LIMIT ? OFFSET ?
     `;
 
-    const florerias = await query(sql, [...params, limit, offset]);
+    // Pasamos limitNum y offset asegurados como números
+    const florerias = await query(sql, [...params, limitNum, offset]);
 
     return { florerias, total };
   }
@@ -128,7 +147,7 @@ let {
     const values = [];
 
     const allowedFields = [
-      'nombre', 'descripcion', 'logo', 'ubicacion', 
+      'nombre', 'descripcion', 'logo', 'direccion', 
       'telefono', 'email', 'horario', 'estatus', 'id_ciudad'
     ];
 

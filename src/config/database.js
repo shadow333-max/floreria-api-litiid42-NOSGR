@@ -11,7 +11,8 @@ const pool = mysql.createPool({
   connectionLimit: 10, // cantidad máxima de 10 conexiones simultáneas
   queueLimit: 0,
   enableKeepAlive: true,
-  keepAliveInitialDelay: 0
+  keepAliveInitialDelay: 0,
+  decimalNumbers: true
 });
 
 // Obtener la conexión a la bd
@@ -26,8 +27,8 @@ pool.getConnection()
   });
 
 // función de ayuda para las consultas - evitar reescribir los mismo en cada uso
-const query = async (sql, params) => {
-  const [rows] = await pool.execute(sql, params);
+const query = async (sql, params = []) => {
+  const [rows] = await pool.query(sql, params);
   return rows;
 };
 

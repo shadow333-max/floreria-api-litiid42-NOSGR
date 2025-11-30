@@ -7,27 +7,36 @@ const floreriaController = {
   //. listar las florerias
   getAll: async (req, res, next) => {
     try {
-      const page = parseInt(req.query.page) || 1;
-      const limit = parseInt(req.query.limit) || 10;
-      
-      // filtros opcionales
-      const filters = {
-        estatus: req.query.estatus,
-        id_ciudad: req.query.id_ciudad,
-        search: req.query.search
-      };
+        // 1. Asegurar números (Evitar NaN)
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        
+        // 2. Construir objeto de filtros
+        // Solo pasamos lo que realmente venga en el query
+        const filters = {};
+        
+        if (req.query.estatus) filters.estatus = req.query.estatus;
+        if (req.query.id_ciudad) filters.id_ciudad = req.query.id_ciudad;
+        if (req.query.search) filters.search = req.query.search;
 
-      const { florerias, total } = await Floreria.findAll(page, limit, filters);
+        // 3. Llamar al Modelo
+        // El modelo espera (número, número, objeto)
+        const { florerias, total } = await Floreria.findAll(page, limit, filters);
 
-      // agregar url completa del logo
-      const floreriasWithUrls = florerias.map(floreria => ({
-        ...floreria,
-        logo_url: floreria.logo ? getFileUrl(req, floreria.logo) : null
-      }));
+        // 4. Procesar URLs de logos
+        const floreriasWithUrls = florerias.map(floreria => ({
+            ...floreria,
+            // Validación de seguridad: verificamos si getFileUrl existe, si no, devolvemos null
+            logo_url: (floreria.logo && typeof getFileUrl === 'function') 
+                ? getFileUrl(req, floreria.logo) 
+                : null
+        }));
 
-      res.json(paginatedResponse(floreriasWithUrls, page, limit, total));
+        // 5. Responder
+        res.json(paginatedResponse(floreriasWithUrls, page, limit, total));
+        
     } catch (error) {
-      next(error);
+        next(error);
     }
   },
 

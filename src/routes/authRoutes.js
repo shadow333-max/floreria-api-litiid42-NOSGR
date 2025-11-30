@@ -17,7 +17,7 @@ const { authenticateToken } = require('../middlewares/auth');
  *           schema:
  *             type: object
  *             required:
- *               - name
+ *               - nombre
  *               - email
  *               - password
  *             properties:

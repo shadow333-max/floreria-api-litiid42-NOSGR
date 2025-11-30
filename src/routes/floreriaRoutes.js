@@ -174,7 +174,7 @@ router.post(
  *               logo:
  *                 type: string
  *                 format: binary
- *               ubicacion:
+ *               direccion:
  *                 type: string
  *               telefono:
  *                 type: string
