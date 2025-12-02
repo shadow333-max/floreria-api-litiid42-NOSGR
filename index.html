@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delirio - Directorio de Florería</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- HEADER: barra superior con logo y navegación -->
+    <header class="header-principal">
+        <div class="contenedor">
+            <!-- Logo de Delirio -->
+            <div class="logo-delirio">
+                <img src="https://i.ibb.co/6cG1L4Xj/Green-Pink-Pastel-Floral-Organic-Flower-Icon-Flower-Shop-Logo.png" alt="Logo Delirio" class="logo-imagen">
+                <span class="logo-texto">Delirio</span>
+            </div>
+
+            <!-- Navegación principal -->
+            <nav class="navegacion-principal">
+                <a href="#inicio" class="nav-enlace">Inicio</a>
+                <a href="#florerias" class="nav-enlace">Florería</a>
+                <a href="#ciudades" class="nav-enlace">Ciudades</a>
+                <a href="#contacto" class="nav-enlace">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO: sección principal con título y descripción -->
+    <section class="seccion-hero" id="inicio">
+        <div class="contenedor">
+            <h1 class="titulo-principal">Encuentra las mejores florería</h1>
+            <p class="subtitulo-principal">Delirio te conecta con las florería más hermosas de tu ciudad</p>
+
+            <!-- Barra de búsqueda y filtros -->
+            <div class="barra-busqueda">
+                <select class="filtro-ciudad" aria-label="Selecciona una ciudad">
+                    <option value="">Selecciona una ciudad</option>
+                    <option value="1">Cancún - Quintana Roo</option>
+                    <option value="2">Playa del Carmen - Quintana Roo</option>
+                    <option value="3">Guadalajara - Jalisco</option>
+                    <option value="4">Monterrey - Nuevo León</option>
+                    <option value="5">Ciudad de México - CDMX</option>
+                </select>
+                <input type="text" class="campo-busqueda" placeholder="Busca por nombre de florería..." aria-label="Buscar florería">
+                <button class="boton-buscar">Buscar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN PRINCIPAL: FLORERÍA -->
+    <section class="seccion-florerias" id="florerias">
+        <div class="contenedor">
+            <div class="encabezado-seccion">
+                <h2 class="titulo-seccion">Nuestras Florería</h2>
+                <p class="descripcion-seccion">Descubre las mejores florería registradas en nuestro directorio</p>
+            </div>
+
+            <div class="grid-florerias">
+                <!-- Tarjeta 1 -->
+                <article class="tarjeta-floreria">
+                    <div class="tarjeta-logo">
+                        <img src="https://i.ibb.co/6cG1L4Xj/Green-Pink-Pastel-Floral-Organic-Flower-Icon-Flower-Shop-Logo.png" alt="Logo Florecitas" class="imagen-logo">
+                    </div>
+                    <div class="tarjeta-contenido">
+                        <h3 class="tarjeta-nombre">Florecitas Cancún</h3>
+                        <p class="tarjeta-ubicacion"><span class="icono-ubicacion">📍</span>Cancún, Quintana Roo</p>
+                        <p class="tarjeta-descripcion">Florería especializada en arreglos para bodas, cumpleaños y ocasiones especiales.</p>
+                        <div class="tarjeta-contacto">
+                            <p class="contacto-item"><span class="icono-contacto">📞</span><strong>Teléfono:</strong> 9988123456</p>
+                            <p class="contacto-item"><span class="icono-contacto">✉️</span><strong>Email:</strong> cancun@florecitas.com</p>
+                            <p class="contacto-item"><span class="icono-contacto">🕒</span><strong>Horario:</strong> Lun-Dom 9:00 AM - 8:00 PM</p>
+                            <p class="contacto-item"><span class="icono-contacto">📮</span><strong>Dirección:</strong> Av. Nader 100, Centro</p>
+                        </div>
+                        <div class="tarjeta-botones">
+                            <button class="boton-primario">Ver más</button>
+                            <button class="boton-secundario">Contactar</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 2 -->
+                <article class="tarjeta-floreria">
+                    <div class="tarjeta-logo">
+                        <img src="https://i.ibb.co/6cG1L4Xj/Green-Pink-Pastel-Floral-Organic-Flower-Icon-Flower-Shop-Logo.png" alt="Logo Florecitas" class="imagen-logo">
+                    </div>
+                    <div class="tarjeta-contenido">
+                        <h3 class="tarjeta-nombre">Florecitas Guadalajara</h3>
+                        <p class="tarjeta-ubicacion"><span class="icono-ubicacion">📍</span>Guadalajara, Jalisco</p>
+                        <p class="tarjeta-descripcion">Florería con experiencia de 15 años en arreglos florales únicos y personalizados.</p>
+                        <div class="tarjeta-contacto">
+                            <p class="contacto-item"><span class="icono-contacto">📞</span><strong>Teléfono:</strong> 3338876543</p>
+                            <p class="contacto-item"><span class="icono-contacto">✉️</span><strong>Email:</strong> guadalajara@florecitas.com</p>
+                            <p class="contacto-item"><span class="icono-contacto">🕒</span><strong>Horario:</strong> Lun-Sáb 10:00 AM - 7:00 PM</p>
+                            <p class="contacto-item"><span class="icono-contacto">📮</span><strong>Dirección:</strong> Calle Morelos 250, Sector Centro</p>
+                        </div>
+                        <div class="tarjeta-botones">
+                            <button class="boton-primario">Ver más</button>
+                            <button class="boton-secundario">Contactar</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: CIUDADES DISPONIBLES -->
+    <section class="seccion-ciudades" id="ciudades">
+        <div class="contenedor">
+            <div class="encabezado-seccion">
+                <h2 class="titulo-seccion">Ciudades Disponibles</h2>
+                <p class="descripcion-seccion">Selecciona una ciudad para ver sus florería</p>
+            </div>
+
+            <div class="grid-ciudades">
+                <div class="tarjeta-ciudad">
+                    <span class="icono-ciudad">🏙️</span>
+                    <h3 class="ciudad-nombre">Cancún</h3>
+                    <p class="ciudad-estado">Quintana Roo</p>
+                </div>
+                <div class="tarjeta-ciudad">
+                    <span class="icono-ciudad">🏖️</span>
+                    <h3 class="ciudad-nombre">Playa del Carmen</h3>
+                    <p class="ciudad-estado">Quintana Roo</p>
+                </div>
+                <div class="tarjeta-ciudad">
+                    <span class="icono-ciudad">🌺</span>
+                    <h3 class="ciudad-nombre">Guadalajara</h3>
+                    <p class="ciudad-estado">Jalisco</p>
+                </div>
+                <div class="tarjeta-ciudad">
+                    <span class="icono-ciudad">🏙️</span>
+                    <h3 class="ciudad-nombre">Monterrey</h3>
+                    <p class="ciudad-estado">Nuevo León</p>
+                </div>
+                <div class="tarjeta-ciudad">
+                    <span class="icono-ciudad">🏛️</span>
+                    <h3 class="ciudad-nombre">Ciudad de México</h3>
+                    <p class="ciudad-estado">CDMX</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: CONTACTO -->
+    <section class="seccion-contacto" id="contacto">
+        <div class="contenedor">
+            <div class="encabezado-seccion">
+                <h2 class="titulo-seccion">¿Tienes preguntas?</h2>
+                <p class="descripcion-seccion">Contáctanos y te ayudaremos a encontrar la florería perfecta</p>
+            </div>
+
+            <form class="formulario-contacto">
+                <div class="grupo-formulario">
+                    <label for="nombre" class="etiqueta-formulario">Nombre</label>
+                    <input type="text" id="nombre" class="campo-formulario" placeholder="Tu nombre" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="email" class="etiqueta-formulario">Email</label>
+                    <input type="email" id="email" class="campo-formulario" placeholder="tu@email.com" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="mensaje" class="etiqueta-formulario">Mensaje</label>
+                    <textarea id="mensaje" class="campo-formulario campo-textarea" placeholder="Tu mensaje aquí..." rows="5" required></textarea>
+                </div>
+                <button type="submit" class="boton-enviar">Enviar mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER: pie de página -->
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <p class="texto-footer">© 2025 Delirio - Directorio de Florería. Todos los derechos reservados.</p>
+            <p class="texto-footer-secundario">Conectando a las personas con las florería más hermosas.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
