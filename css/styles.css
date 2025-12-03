@@ -73,7 +73,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
+  padding: 8px 20px;
 }
 
 /* Comentario: estilos del logo de Delirio */
@@ -93,11 +93,11 @@ body {
 
 /* Comentario: imagen del logo */
 .logo-imagen {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(157, 110, 199, 0.2);
+  border-radius: 0;
+  box-shadow: none;
   transition: all 0.3s ease;
 }
 
